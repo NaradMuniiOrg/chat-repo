@@ -68,6 +68,7 @@ listener.sockets.on('connection', function (socket) {
 
     socket.on('chat message', function (msg_from_user) {
 
+        // TODO: Bring this response from AI Chatbot API Interface
         var response_from_agent_bot = "Narayan! Narayan! Bolo Watse, kis duwidha mein ho?";
         socket.emit('chat message', response_from_agent_bot);
     });
