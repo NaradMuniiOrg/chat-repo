@@ -23,12 +23,21 @@
     <script>
       var socket = io.connect();
 
-      $('form').submit(function(){
-        socket.emit('chat message', $('#m').val());
+      $('form').submit(function () {
+        var user_msg = $('#m').val();
+
+        // Append User's Message in the Chat Window
+        $('#messages').append($('<li>').text(user_msg));
+
+        // Emit the User's Message to the Server for interpretation
+        socket.emit('chat message', user_msg);
+
+        // Clear Chat from the textbox
         $('#m').val('');
         return false;
       });
-      socket.on('chat message', function(msg){
+      socket.on('chat message', function (msg) {
+        // Get the message from the server and display it in Chat Window
         $('#messages').append($('<li>').text(msg));
       });
     </script>
