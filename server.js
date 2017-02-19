@@ -68,9 +68,18 @@ listener.sockets.on('connection', function (socket) {
 
     socket.on('chat message', function (msg_from_user) {
 
-        // TODO: Bring this response from AI Chatbot API Interface
-        var response_from_agent_bot = "Narayan! Narayan! Bolo Watse, kis duwidha mein ho?";
-        socket.emit('chat message', response_from_agent_bot);
+        var response_from_narad_muni = getResponseFromAIChatBot();
+        socket.emit('chat message', response_from_narad_muni);
     });
 
 });
+
+// AI Chatbot API Interface methods
+
+var getResponseFromAIChatBot = function (msg_from_user)
+{
+    // TODO: Bring this response from AI Chatbot API Interface
+    var response_from_agent_bot = "Narayan! Narayan! Bolo Watse, kis duwidha mein ho?";
+
+    return response_from_agent_bot;
+}
