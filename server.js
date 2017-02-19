@@ -66,8 +66,10 @@ listener.sockets.on('connection', function (socket) {
 
     });
 
-    socket.on('chat message', function(msg){
-	socket.emit('chat message', msg);
+    socket.on('chat message', function (msg_from_user) {
+
+        var response_from_agent_bot = "Narayan! Narayan! Bolo Watse, kis duwidha mein ho?";
+        socket.emit('chat message', response_from_agent_bot);
     });
 
 });
