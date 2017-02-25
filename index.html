@@ -8,40 +8,69 @@
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
-			$(".list").hide();
-			$(".narad_reply").hide();
-			$("#search").click(function () {
-				$(".list").show();
-				$(".narad_reply").show();
-			});
+			//$(".list").hide();
+			//$(".narad_reply").hide();
+			//$("#send-message-button").click(function () {
+			//	$(".list").show();
+			//	$(".narad_reply").show();
+
+			//	// Clear out the Text present in the Input Field
+			//	//$("input[name='checkListItem']").val('');
+			//});
 
 		});
 	</script>
-
+	<script src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
 
+		// Socket.IO Object
+		var socket = io.connect();
+
+		// User Data
 		var userName = "Shubham";
+		var userId = 1;
+
+		// Agent Data
+		var agentName = "NARAD";
+		var userId = 2;
+
 		$(document).ready(function () {
 
-			$("#search").click(function () {
+			$("#send-message-button").click(function () {
+				// Read Text Message from Input Field
 				var input = $("input[name='checkListItem']").val();
 
-				insertMessageInJumboTron(input, "item");
+				// Add User Message to Chat Window
+				insertMessageInJumboTron(input, "item", userName);
+
+				// Emit the User's Message to the Server for interpretation
+				socket.emit('chat message', user_msg);
+
+				// Clear Message from Input Div
+				$("input[name='checkListItem']").val('');
 			});
 			$("#search1").click(function () {
-
+				// Read Text Message from Input Field
 				var input = $("input[name='checkListItem1']").val();
 
-				insertMessageInJumboTron(input, "item1");
+				// Add Message to Chat Window
+				insertMessageInJumboTron(input, "item1", agentName);
+
+				// Clear Message from Input Div
+				$("input[name='checkListItem1']").val('');
+			});
+			socket.on('chat message', function (msg) {
+				// Get the response message from the server and display it in the Chat Window
+				insertMessageInJumboTron(msg, "item1", agentName);
 			});
 		});
 
-		var insertMessageInJumboTron = function (input_message, messageDivClass) {
+		var insertMessageInJumboTron = function (input_message, messageDivClass, messageUserName) {
 			//var userMessageContainer = $('<div/>', { class: 'user-message-container' });
 			var userMessageContainer = $('<div/>', { class: messageDivClass + ' empty-space' });
 			userMessageContainer.appendTo(".list");
 
-			var userMessageName = $('<div/>', { class: messageDivClass + ' userName_cust', text: userName });
+			var userMessageName = $('<div/>', { class: messageDivClass + ' userName_cust', text: messageUserName });
 			userMessageName.appendTo(userMessageContainer);
 
 			var userMessage = $('<div/>', { class: messageDivClass, text: input_message });
@@ -67,7 +96,7 @@
 						<label for="email" class="glyphicon glyphicon-search" rel="tooltip" title="email"></label>
 					</div>
 					<span class="input-group-btn">
-						<button class="btn btn-success" type="button" id="search">Enter</button>
+						<button class="btn btn-success" type="button" id="send-message-button">Enter</button>
 
 					</span>
 					<div class="icon-addon addon-sm">
