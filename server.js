@@ -171,33 +171,7 @@ listener.sockets.on('connection', function (socket) {
 var getResponseFromAIChatBot = function (msg_from_user)
 {
     // TODO: Bring this response from AI Chatbot API Interface
-    //var response_from_agent_bot = "Narayan! Narayan! Bolo Watse, kis duwidha mein ho?";
-
-    var response_from_agent_bot = FindalltheWords(msg_from_user);
+    var response_from_agent_bot = "Narayan! Narayan! Bolo Watse, kis duwidha mein ho?";
 
     return response_from_agent_bot;
-}
-
-function FindalltheWords(sentence) {
-    diffWords = [];
-    words = sentence
-                  .replace(/[.,?!;()"'-]/g, " ")
-                  .replace(/\s+/g, " ")
-                  .toLowerCase()
-                  .split(" ");
-    words.forEach(function (word) {
-        if (!(diffWords.hasOwnProperty(word))) {
-            diffWords.push(word);
-        }
-    });
-
-    var array = [];
-    array = ['from', 'how', 'to', 'want', 'the', 'for', 'in', 'need', 'only'];
-
-    array.forEach(function (word) {
-        if ((diffWords.hasOwnProperty(word))) {
-            diffWords.pop(word);
-        }
-    });
-    return diffWords;
 }
