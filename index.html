@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Hello wasta</title>
+	<title>NARAD Chat</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/structure.css">
 	<script src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript">
+	<!--<script type="text/javascript">
 		$(document).ready(function () {
 			//$(".list").hide();
 			//$(".narad_reply").hide();
@@ -19,7 +19,7 @@
 			//});
 
 		});
-	</script>
+	</script>-->
 	<script src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
 
@@ -36,7 +36,7 @@
 
 		$(document).ready(function () {
 
-			$("#send-message-button").click(function () {
+			$("#send-message-button").click(function (event) {
 				// Read Text Message from Input Field
 				var user_msg = $("input[name='checkListItem']").val();
 
@@ -48,6 +48,8 @@
 
 				// Clear Message from Input Div
 				$("input[name='checkListItem']").val('');
+
+				return false;
 			});
 			$("#search1").click(function () {
 				// Read Text Message from Input Field
@@ -58,10 +60,14 @@
 
 				// Clear Message from Input Div
 				$("input[name='checkListItem1']").val('');
+
+				return false;
 			});
 			socket.on('chat message', function (response_msg) {
 				// Get the response message from the server and display it in the Chat Window
-			    insertMessageInJumboTron(response_msg, "item1", agentName);
+				insertMessageInJumboTron(response_msg, "item1", agentName);
+
+				return false;
 			});
 		});
 
