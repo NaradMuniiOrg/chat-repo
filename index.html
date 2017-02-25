@@ -38,10 +38,10 @@
 
 			$("#send-message-button").click(function () {
 				// Read Text Message from Input Field
-			    var user_msg = $("input[name='checkListItem']").val();
+				var user_msg = $("input[name='checkListItem']").val();
 
 				// Add User Message to Chat Window
-				insertMessageInJumboTron(input, "item", userName);
+				insertMessageInJumboTron(user_msg, "item", userName);
 
 				// Emit the User's Message to the Server for interpretation
 				socket.emit('chat message', user_msg);
