@@ -38,7 +38,7 @@
 
 			$("#send-message-button").click(function () {
 				// Read Text Message from Input Field
-				var input = $("input[name='checkListItem']").val();
+			    var user_msg = $("input[name='checkListItem']").val();
 
 				// Add User Message to Chat Window
 				insertMessageInJumboTron(input, "item", userName);
@@ -59,9 +59,9 @@
 				// Clear Message from Input Div
 				$("input[name='checkListItem1']").val('');
 			});
-			socket.on('chat message', function (msg) {
+			socket.on('chat message', function (response_msg) {
 				// Get the response message from the server and display it in the Chat Window
-				insertMessageInJumboTron(msg, "item1", agentName);
+			    insertMessageInJumboTron(response_msg, "item1", agentName);
 			});
 		});
 
