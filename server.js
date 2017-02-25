@@ -101,16 +101,16 @@ listener.sockets.on('connection', function (socket) {
 
         // TODO: Move this code to a new method saveRecordToMongoDB()
 
-        newContact.userName = "Ramnath";
-        newContact.lastName = "Damodar";
+        //newContact.userName = "Ramnath";
+        //newContact.lastName = "Damodar";
 
-        db.collection(CONTACTS_COLLECTION).insertOne(newContact, function (err, doc) {
-            if (err) {
-                handleError(res, err.message, "Failed to create new contact.");
-            } else {
-                res.status(201).json(doc.ops[0]);
-            }
-        });
+        //db.collection(CONTACTS_COLLECTION).insertOne(newContact, function (err, doc) {
+        //    if (err) {
+        //        handleError(res, err.message, "Failed to create new contact.");
+        //    } else {
+        //        res.status(201).json(doc.ops[0]);
+        //    }
+        //});
 
         var response_from_narad_muni = getResponseFromAIChatBot();
         socket.emit('chat message', response_from_narad_muni);
