@@ -1,9 +1,40 @@
 'use strict';
 
+// Socket.IO variables
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
 var io = require('socket.io');
+
+// MongoDB variables
+var mongodb = require("mongodb");
+var ObjectID = mongodb.ObjectID;
+
+var CONTACTS_COLLECTION = "contacts";
+
+// Create a database variable outside of the database connection callback to reuse the connection pool in your app.
+var db;
+
+// Connect to the database before starting the application server.
+//mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
+//mongodb://Semicolon:semicolon@123@ds161209.mlab.com:61209/semicolon
+//mongodb://<dbuser>:<dbpassword>@ds161209.mlab.com:61209/semicolon
+mongodb.MongoClient.connect("mongodb://vikram:vikram@ds161209.mlab.com:61209/semicolon", function (err, database) {
+    if (err) {
+        console.log(err);
+        process.exit(1);
+    }
+
+    // Save database object from the callback for reuse.
+    db = database;
+    console.log("Database connection ready");
+
+    // Initialize the app.
+    var server = app.listen(process.env.PORT || 8080, function () {
+        var port = server.address().port;
+        console.log("App now running on port", port);
+    });
+});
 
 var server = http.createServer(function (request, response) {
     var path = url.parse(request.url).pathname;
@@ -67,6 +98,19 @@ listener.sockets.on('connection', function (socket) {
     });
 
     socket.on('chat message', function (msg_from_user) {
+
+        // TODO: Move this code to a new method saveRecordToMongoDB()
+
+        newContact.userName = "Ramnath";
+        newContact.lastName = "Damodar";
+
+        db.collection(CONTACTS_COLLECTION).insertOne(newContact, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to create new contact.");
+            } else {
+                res.status(201).json(doc.ops[0]);
+            }
+        });
 
         var response_from_narad_muni = getResponseFromAIChatBot();
         socket.emit('chat message', response_from_narad_muni);
