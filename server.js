@@ -42,18 +42,13 @@ var server = http.createServer(function (request, response) {
     switch (path) {
         case '/':
             path = "/chat.html";
-            sendFile(path);
             break;
         default:
-            response.writeHead(404);
-            response.write('File not found!');
-            response.end();
+            path = "/chat.html";
             break;
     }
-});
 
-var sendFile = function (path)
-{
+    // Render the html file mentioned in the path variable to the client
     fs.readFile(__dirname + path, function (error, data) {
         if (error) {
             response.writeHead(404);
@@ -66,7 +61,7 @@ var sendFile = function (path)
             response.end();
         }
     });
-}
+});
 
 // Use this while debugging in node-debug
 //server.listen(8001);
