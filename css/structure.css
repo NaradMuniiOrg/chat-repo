@@ -1,0 +1,113 @@
+html
+{
+	overflow-y: hidden;
+}
+@font-face {
+    font-family: Lato;
+    src: url(font/Lato.ttf);
+}
+
+*{ 
+	font-weight: 300px;
+  font-family: Dejavu serif;
+  font-variant: bold;
+  font-size: 15px;
+
+
+}
+.container
+{
+	overflow-y: visible;;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: inherit;
+  right:inherit;
+  padding: 1rem;
+  background-color: #31708f;
+  text-align: center;
+  height: 10vh;
+  width:inherit;
+  border-radius: 4px;
+}
+.jumbotron
+{
+	height: 82vh;
+    overflow-y: scroll;
+}
+#search
+{
+
+margin-top:-23px;
+height: 36px;
+}
+.item
+{
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px  #cccccc;
+	background-color: rgba(233,255,189,0.78);
+	color:rgba(136,119,111,1);
+	float:right;
+	width:auto;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top: 10px;
+	padding-bottom:10px;
+	height:auto;
+	position: static;
+	word-wrap: break-word;
+	margin-top: 5px;
+
+}
+
+.item1
+{
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px  #cccccc;
+	background-color: white;
+	color:black;
+	float:left;
+	width:auto;
+	position: static;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top: 10px;
+	padding-bottom:10px;
+	height:auto;
+	word-wrap: break-word;
+	margin-top: 5px;
+
+}
+  
+.narad_reply
+{
+	margin-top: 10px;
+	border-radius: 4px;
+	box-shadow: 5px 5px 5px  #cccccc;	
+	background-color: white;
+	float:left;
+	width:60%;
+	padding-left:10px;
+	padding-top: 5px;
+	padding-bottom:  5px;
+	height:auto;
+}
+#input
+{
+	border-radius: 4px;
+} 
+.empty-space
+{
+	margin-top:-20px;width:70%;background-color:transparent;box-shadow: 5px 5px 5px transparent;overflow: auto;
+}
+.userName_cust
+{
+	color:rgba(15,139,241,0.94);
+	font-size: 15px;
+	font-weight:100px;
+	padding: 10px;
+	text-decoration: underline;
+	
+
+}
