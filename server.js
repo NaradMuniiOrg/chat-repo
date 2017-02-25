@@ -39,20 +39,20 @@ var io = require('socket.io');
 var server = http.createServer(function (request, response) {
     var path = url.parse(request.url).pathname;
 
-    switch (path) {
-        case '/':
-            path = "/chat.html";
-            break;
-        case '/index':
-            path = "/index.html";
-            break;
-        case '/dashboard':
-            path = "/dashboard.html";
-            break;
-        default:
-            path = "/chat.html";
-            break;
-    }
+    //switch (path) {
+    //    case '/':
+    //        path = "/chat.html";
+    //        break;
+    //    case '/index':
+    //        path = "/index.html";
+    //        break;
+    //    case '/dashboard':
+    //        path = "/dashboard.html";
+    //        break;
+    //    default:
+    //        path = "/chat.html";
+    //        break;
+    //}
 
     // Render the html file mentioned in the path variable to the client
     fs.readFile(__dirname + path, function (error, data) {
