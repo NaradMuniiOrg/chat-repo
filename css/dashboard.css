@@ -1,4 +1,56 @@
+
+
 .well
 {
 	min-height: 80px;
+}
+
+.container .jumbotron
+{
+	height:80vh;
+	padding: 0px;
+	padding-right: 0px;
+	overflow-y: scroll;
+	padding-left: 0px;
+}
+.panel-heading
+{
+	background-color: #8ae488;
+	text-align:center;
+	width:100%;
+	float: left;
+}
+
+
+
+.dyndiv
+{
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px  #cccccc;
+	background-color: rgba(233,255,189,0.78);
+	color:color:rgb(8, 3, 0);;
+	width:100%;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top: 10px;
+	padding-bottom:10px;
+	height:auto;
+	position: static;
+	word-wrap: break-word;
+	margin-top: 5px;
+
+}
+.active
+{
+	padding:10px;
+	border:1px solid rgba(0,255,17,0.43);
+	background-color:rgba(0,255,17,0.43);
+	text-align: center;
+}
+.onhold
+{
+	padding:10px;
+	border:1px solid rgba(255,52,52,0.65);
+	background-color:rgba(255,52,52,0.65); 
+	text-align:center;
 }

@@ -7,13 +7,14 @@
   <link rel="stylesheet" type="text/css" href="css/dashboard.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/dashboard.js"></script>
 </head>
 <body>
 <div class=well >
 <div class="col-lg-6">
 
 <div class="container">
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Click Here</button>
+  <button type="button" id="temp" class="btn btn-info btn-lg">Click Here</button>
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -38,12 +39,26 @@
   
 </div></div>
 </div>
-<div class="container">
-<div  class="col-lg-12" >
-	<div class="col-lg-5 jumbotron" >shubham</div>
+<div class="container ">
+<div class="col-lg-12">
+	<div class="col-lg-5 active">Active <span class="badge" id="Active_H"></span> </div>
 	<div class="col-lg-2"></div>
-	<div class="col-lg-5 jumbotron" >shubham</div>
+	<div class="col-lg-5 onhold" id="Hold_H">On Hold <span class="badge" id="Hold_H"></div>
+</div>
+<div  class="col-lg-12 " >
+<div>
 
+	<div class="col-lg-5 jumbotron left" id="activediv">
+
+  </div>
+</div>
+	
+ 
+	<div class="col-lg-2"></div>
+	<div class="col-lg-5 jumbotron " id="holddiv">
+	
+	</div>
+ </div>
 
 
 </div>
