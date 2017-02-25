@@ -43,6 +43,12 @@ var server = http.createServer(function (request, response) {
         case '/':
             path = "/chat.html";
             break;
+        case '/index':
+            path = "/index.html";
+            break;
+        case '/dashboard':
+            path = "/dashboard.html";
+            break;
         default:
             path = "/chat.html";
             break;
