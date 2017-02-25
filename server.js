@@ -36,38 +36,78 @@ var io = require('socket.io');
 //    });
 //});
 
+// OLD WebServe Logic to serve files
+
+//var server = http.createServer(function (request, response) {
+//    var path = url.parse(request.url).pathname;
+
+//    //switch (path) {
+//    //    case '/':
+//    //        path = "/chat.html";
+//    //        break;
+//    //    case '/index':
+//    //        path = "/index.html";
+//    //        break;
+//    //    case '/dashboard':
+//    //        path = "/dashboard.html";
+//    //        break;
+//    //    default:
+//    //        path = "/chat.html";
+//    //        break;
+//    //}
+
+//    // Render the html file mentioned in the path variable to the client
+//    fs.readFile(__dirname + path, function (error, data) {
+//        if (error) {
+//            response.writeHead(404);
+//            response.write('File not found!');
+//            response.end();
+//        }
+//        else {
+//            response.writeHead(200, { 'Content-Type': 'text/html' });
+//            response.write(data, "utf8");
+//            response.end();
+//        }
+//    });
+//});
+
+
+// NEW WebServe Logic to serve files
+
 var server = http.createServer(function (request, response) {
-    var path = url.parse(request.url).pathname;
+	var filePath = req.url;
+	if (filePath == '/')
+		filePath = '/index.html';
 
-    //switch (path) {
-    //    case '/':
-    //        path = "/chat.html";
-    //        break;
-    //    case '/index':
-    //        path = "/index.html";
-    //        break;
-    //    case '/dashboard':
-    //        path = "/dashboard.html";
-    //        break;
-    //    default:
-    //        path = "/chat.html";
-    //        break;
-    //}
+	filePath = __dirname+filePath;
+	var extname = path.extname(filePath);
+	var contentType = 'text/html';
 
-    // Render the html file mentioned in the path variable to the client
-    fs.readFile(__dirname + path, function (error, data) {
-        if (error) {
-            response.writeHead(404);
-            response.write('File not found!');
-            response.end();
-        }
-        else {
-            response.writeHead(200, { 'Content-Type': 'text/html' });
-            response.write(data, "utf8");
-            response.end();
-        }
-    });
-});
+	switch (extname) {
+		case '.js':
+			contentType = 'text/javascript';
+			break;
+		case '.css':
+			contentType = 'text/css';
+			break;
+	}
+
+
+	fs.exists(filePath, function(exists) {
+
+		if (exists) {
+			fs.readFile(filePath, function(error, content) {
+				if (error) {
+					res.writeHead(500);
+					res.end();
+				}
+				else {
+					res.writeHead(200, { 'Content-Type': contentType });
+					res.end(content, 'utf-8');
+				}
+			});
+		}
+	});
 
 // Use this while debugging in node-debug
 //server.listen(8001);
