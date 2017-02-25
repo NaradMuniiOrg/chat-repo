@@ -42,18 +42,7 @@ var server = http.createServer(function (request, response) {
     switch (path) {
         case '/':
             path = "/chat.html";
-	    fs.readFile(__dirname + path, function (error, data) {
-                if (error) {
-                    response.writeHead(404);
-                    response.write('File not found!');
-                    response.end();
-                }
-                else {
-                    response.writeHead(200, { 'Content-Type': 'text/html' });
-                    response.write(data, "utf8");
-                    response.end();
-                }
-            });
+            sendFile(path);
             break;
         default:
             response.writeHead(404);
@@ -62,6 +51,22 @@ var server = http.createServer(function (request, response) {
             break;
     }
 });
+
+var sendFile = function (path)
+{
+    fs.readFile(__dirname + path, function (error, data) {
+        if (error) {
+            response.writeHead(404);
+            response.write('File not found!');
+            response.end();
+        }
+        else {
+            response.writeHead(200, { 'Content-Type': 'text/html' });
+            response.write(data, "utf8");
+            response.end();
+        }
+    });
+}
 
 // Use this while debugging in node-debug
 //server.listen(8001);
