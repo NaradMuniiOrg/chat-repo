@@ -5,6 +5,7 @@ var http = require('http');
 var url = require('url');
 var fs = require('fs');
 var io = require('socket.io');
+var path = require('path');
 
 //// MongoDB variables
 //var mongodb = require("mongodb");
