@@ -75,39 +75,40 @@ var io = require('socket.io');
 // NEW WebServe Logic to serve files
 
 var server = http.createServer(function (request, response) {
-	var filePath = request.url;
-	if (filePath == '/')
-		filePath = '/index.html';
+    var filePath = url.parse(request.url).pathname;
+    if (filePath == '/')
+        filePath = '/index.html';
 
-	filePath = __dirname+filePath;
-	var extname = path.extname(filePath);
-	var contentType = 'text/html';
+    filePath = __dirname + filePath;
+    var extname = path.extname(filePath);
+    var contentType = 'text/html';
 
-	switch (extname) {
-		case '.js':
-			contentType = 'text/javascript';
-			break;
-		case '.css':
-			contentType = 'text/css';
-			break;
-	}
+    switch (extname) {
+        case '.js':
+            contentType = 'text/javascript';
+            break;
+        case '.css':
+            contentType = 'text/css';
+            break;
+    }
 
 
-	fs.exists(filePath, function(exists) {
+    fs.exists(filePath, function (exists) {
 
-		if (exists) {
-			fs.readFile(filePath, function(error, content) {
-				if (error) {
-					response.writeHead(500);
-					response.end();
-				}
-				else {
-					response.writeHead(200, { 'Content-Type': contentType });
-					response.end(content, 'utf-8');
-				}
-			});
-		}
-	});
+        if (exists) {
+            fs.readFile(filePath, function (error, content) {
+                if (error) {
+                    response.writeHead(500);
+                    response.end();
+                }
+                else {
+                    response.writeHead(200, { 'Content-Type': contentType });
+                    response.end(content, 'utf-8');
+                }
+            });
+        }
+    });
+});
 
 // Use this while debugging in node-debug
 //server.listen(8001);
@@ -168,8 +169,8 @@ listener.sockets.on('connection', function (socket) {
 
 var getResponseFromAIChatBot = function (msg_from_user)
 {
-	// TODO: Bring this response from AI Chatbot API Interface
-	var response_from_agent_bot = "Narayan! Narayan! Bolo Watse, kis duwidha mein ho?";
+    // TODO: Bring this response from AI Chatbot API Interface
+    var response_from_agent_bot = "Narayan! Narayan! Bolo Watse, kis duwidha mein ho?";
 
-	return response_from_agent_bot;
+    return response_from_agent_bot;
 }
