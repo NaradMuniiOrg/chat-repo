@@ -75,7 +75,7 @@ var io = require('socket.io');
 // NEW WebServe Logic to serve files
 
 var server = http.createServer(function (request, response) {
-	var filePath = req.url;
+	var filePath = request.url;
 	if (filePath == '/')
 		filePath = '/index.html';
 
@@ -98,12 +98,12 @@ var server = http.createServer(function (request, response) {
 		if (exists) {
 			fs.readFile(filePath, function(error, content) {
 				if (error) {
-					res.writeHead(500);
-					res.end();
+					response.writeHead(500);
+					response.end();
 				}
 				else {
-					res.writeHead(200, { 'Content-Type': contentType });
-					res.end(content, 'utf-8');
+					response.writeHead(200, { 'Content-Type': contentType });
+					response.end(content, 'utf-8');
 				}
 			});
 		}
@@ -125,42 +125,42 @@ global.allClients = [];
 
 
 listener.sockets.on('connection', function (socket) {
-    /* Push the current socket to the allClients array */
-    allClients.push(socket);
-    var deviceSessionId = allClients.indexOf(socket);
+	/* Push the current socket to the allClients array */
+	allClients.push(socket);
+	var deviceSessionId = allClients.indexOf(socket);
 
-    socket.emit('deviceSessionData', { 'deviceSessionId': deviceSessionId });
+	socket.emit('deviceSessionData', { 'deviceSessionId': deviceSessionId });
 
-    socket.on('disconnect', function () {
-        console.log('Got disconnect!');
+	socket.on('disconnect', function () {
+		console.log('Got disconnect!');
 
-        var deviceSessionId = allClients.indexOf(socket);
-        /* Remove the session from the allClients array */
-        allClients.splice(deviceSessionId, 1);
+		var deviceSessionId = allClients.indexOf(socket);
+		/* Remove the session from the allClients array */
+		allClients.splice(deviceSessionId, 1);
 
-        /* Remove the location data from the deviceLocationData array */
-        deviceLocationData.splice(deviceSessionId, 1);
+		/* Remove the location data from the deviceLocationData array */
+		deviceLocationData.splice(deviceSessionId, 1);
 
-    });
+	});
 
-    socket.on('chat message', function (msg_from_user) {
+	socket.on('chat message', function (msg_from_user) {
 
-        // TODO: Move this code to a new method saveRecordToMongoDB()
+		// TODO: Move this code to a new method saveRecordToMongoDB()
 
-        //newContact.userName = "Ramnath";
-        //newContact.lastName = "Damodar";
+		//newContact.userName = "Ramnath";
+		//newContact.lastName = "Damodar";
 
-        //db.collection(CONTACTS_COLLECTION).insertOne(newContact, function (err, doc) {
-        //    if (err) {
-        //        handleError(res, err.message, "Failed to create new contact.");
-        //    } else {
-        //        res.status(201).json(doc.ops[0]);
-        //    }
-        //});
+		//db.collection(CONTACTS_COLLECTION).insertOne(newContact, function (err, doc) {
+		//    if (err) {
+		//        handleError(response, err.message, "Failed to create new contact.");
+		//    } else {
+		//        response.status(201).json(doc.ops[0]);
+		//    }
+		//});
 
-        var response_from_narad_muni = getResponseFromAIChatBot();
-        socket.emit('chat message', response_from_narad_muni);
-    });
+		var response_from_narad_muni = getResponseFromAIChatBot();
+		socket.emit('chat message', response_from_narad_muni);
+	});
 
 });
 
@@ -168,8 +168,8 @@ listener.sockets.on('connection', function (socket) {
 
 var getResponseFromAIChatBot = function (msg_from_user)
 {
-    // TODO: Bring this response from AI Chatbot API Interface
-    var response_from_agent_bot = "Narayan! Narayan! Bolo Watse, kis duwidha mein ho?";
+	// TODO: Bring this response from AI Chatbot API Interface
+	var response_from_agent_bot = "Narayan! Narayan! Bolo Watse, kis duwidha mein ho?";
 
-    return response_from_agent_bot;
+	return response_from_agent_bot;
 }
