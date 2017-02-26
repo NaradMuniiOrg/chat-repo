@@ -125,6 +125,7 @@ global.deviceLocationData = [];
 /* Array that holds the session data for all the connected clients */
 global.allClients = [];
 
+var message_counter = 0;
 
 listener.sockets.on('connection', function (socket) {
 	/* Push the current socket to the allClients array */
@@ -160,18 +161,29 @@ listener.sockets.on('connection', function (socket) {
 		//    }
 		//});
 
-		var response_from_narad_muni = getResponseFromAIChatBot();
+		message_counter = message_counter + 1;
+
+		var response_from_narad_muni;
+
+		if (message_counter == 1)
+		{
+			response_from_narad_muni = "Go to Pi >> Apps >> Leave and Attendance Management System >> Click 'Apply Leave' >> Select Leave Type as Priviledge Leave >> Enter Date >> Mention Comment >> Click Submit. Kindly access LAMS portal using below Internet link if you do not have access to Persistent Intranet";
+		}
+
 		socket.emit('chat message', response_from_narad_muni);
 	});
 
 });
 
+
+
 // AI Chatbot API Interface methods
 
 var getResponseFromAIChatBot = function (msg_from_user)
 {
+
     // TODO: Bring this response from AI Chatbot API Interface
-    var response_from_agent_bot = "Narayan! Narayan! Bolo Watse, kis duwidha mein ho?";
+    var response_from_agent_bot_1 = "Go to Pi >> Apps >> Leave and Attendance Management System >> Click Apply Leave Select Leave Type as Priviledge Leave >> Enter Date >> Mention Comment >> Click Submit. Kindly access LAMS portal using below Internet link if you do not have access to Persistent Intranet";
 
     return response_from_agent_bot;
 }
