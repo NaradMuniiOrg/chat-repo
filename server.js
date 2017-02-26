@@ -169,6 +169,18 @@ listener.sockets.on('connection', function (socket) {
 		{
 			response_from_narad_muni = "Go to Pi >> Apps >> Leave and Attendance Management System >> Click 'Apply Leave' >> Select Leave Type as Priviledge Leave >> Enter Date >> Mention Comment >> Click Submit. Kindly access LAMS portal using below Internet link if you do not have access to Persistent Intranet";
 		}
+		if (message_counter == 2) {
+		    response_from_narad_muni = "Frequency: Once in six months ( i.e. 2 times in year) Amount: Rs. 400/- per head per duration. The Project Party will be held for a Project/Function as a whole. For the purpose of this policy, Project/Function will be considered as reflected on Persistent Intranet i.e. “Pi”. Policy Link : https://pi.persistent.co.in/sites/Company-Policies/Policy/Project%20party.pdf";
+		}
+		if (message_counter == 3) {
+		    response_from_narad_muni = "Pi >> Apps >> Employee Enterprise : Mitra-EP >> Click on 'Professional' >> Go to'Project Experience' >> Add the project details and skill >> Click 'Submit'";
+		}
+		if (message_counter == 4) {
+		    response_from_narad_muni = "Pi >> Apps >> Enterprise Portal Mitra-EP >> Click on Refer a Friend >> Select either 'Quick Referral' or 'Detailed Referral' >> Enter the details and save the profile. There will be applicant ID generated for further processing. HR Self Help Tool Link : https://persistent.yonyx.com/y/conversation/?id=46a439a0-8f8c-11e6-9788-bc764e11d2f4";
+		}
+		if (message_counter == 5) {
+		    response_from_narad_muni = "Please drop email to RecruitmentEnquiries <RecruitmentEnquiries@persistent.com>";
+		}
 
 		socket.emit('chat message', response_from_narad_muni);
 	});
