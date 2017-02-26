@@ -219,7 +219,9 @@ var getResponseFromAlgo = function (msg_from_user)
         applyLeave = true;
     }
 
-    if (applyLeave = true) {
+    applyLeave = true;
+
+    if (applyLeave == true) {
         response_from_narad_muni = "Go to Pi >> Apps >> Leave and Attendance Management System >> Click 'Apply Leave' >> Select Leave Type as Priviledge Leave >> Enter Date >> Mention Comment >> Click Submit. Kindly access LAMS portal using below Internet link if you do not have access to Persistent Intranet";
     }
     if (projectPartyBudget) {
