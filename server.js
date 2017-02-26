@@ -161,6 +161,8 @@ listener.sockets.on('connection', function (socket) {
 		//    }
 		//});
 
+        // Blank comment
+
 		message_counter = message_counter + 1;
 
 		var response_from_narad_muni;
